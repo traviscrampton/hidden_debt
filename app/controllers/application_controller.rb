@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 	helper_method :resource_name, :resource, :devise_mapping, :resource_class
   protect_from_forgery with: :exception
+ skip_before_action :verify_authenticity_token
 
 	def resource_name
 		:user

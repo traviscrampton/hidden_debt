@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import React from 'react';
 import Header from '../components/layouts/Header';
 import NavButton from '../components/layouts/NavButton';
@@ -34,13 +35,17 @@ export default class Flow extends React.Component{
 	}
 
 	persistFinance(data){
-		$.ajax({
-			url: this.state.activeFinance.url,
-			type: 'POST',
-			data: data,
-			success: finance => this.handleSuccess(finance),
-			error: response =>  console.log("There has been a grave mistake")
+		axios.post(this.state.activeFinance.url, {
+			data
 		})
+		.then((finance) => this.handleSuccess(finance))
+		.catch((response) => console.log('Oops there has been a booboo') )
+		// axios({
+		// 	url: this.state.activeFinance.url,
+		// 	type: 'POST',
+		// 	data: data
+		// })
+		// .then((finance) => this.handleSuccess(finance))
 	}
 
 	handleSuccess(finance){

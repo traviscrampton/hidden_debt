@@ -9,13 +9,13 @@ class SavingsController < ApplicationController
 	end
 
 	def update
-		saving = Income.find params[:id]
+		saving = Saving.find params[:id]
 		saving.update(saving_params)
 		respond_with saving
 	end
 
 	def destroy
-		saving = Income.find(params[:id])
+		saving = Saving.find(params[:id])
 		saving.destroy
 		respond_with saving
 	end
