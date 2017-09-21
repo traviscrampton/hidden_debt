@@ -1,0 +1,30 @@
+#home{
+	text-align: center;
+	padding: 10% 15%;
+	.information__block, .signup__block{
+		display: inline-block;
+		overflow: none;
+	}
+	.information__block{
+		width: 55%;
+		float:left;
+		text-align: left;
+		font-weight: 300;
+		&--logo, &--header{
+			display: inline-block;
+		}
+		&--header{
+			font-size: 53px;
+			vertical-align: 32px;
+			margin-left: 25px;
+		}
+		&--subtext{
+			line-height: 36px;
+			margin-top: 24px;
+		}
+	}
+	.signup__block{
+		width: 38%;
+		float:right;
+	}
+}

@@ -1,0 +1,245 @@
+@import 'variables';
+
+#flow{
+	padding: 2% 15%;
+	font-weight: 300;
+}
+.header__block{
+	margin-bottom:25px;
+	&--title{
+		font-size:45px;
+		margin-bottom: 4px;
+	}
+	&--subtext{
+		font-size: 21px;
+	}
+}
+.header__block, .calculation__button{
+	display: inline-block;
+}
+.calculation__button{
+	float:right;
+	button{
+		margin-top:28px;
+		border: 1px solid $hidden_green;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+		font-size: 16px;
+		border-radius: 3px;
+		padding: 16px;
+		color: #fff;
+		background-color: $hidden_green;
+		background-image: linear-gradient(-180deg, darken($hidden_green, 10%) 0%, $hidden_green 90%);
+		&:hover{
+			background-image: linear-gradient(-180deg, darken($hidden_green, 20%) 0%, $hidden_green 90%);
+			cursor: pointer;
+		}
+	}
+}
+.navbutton__block{
+	display:flex;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.075);
+	&--btn{
+		float:left;
+		width: 25%;
+		line-height:62px;
+		color:#c6cbd1;
+		background: #fafbfc;
+		text-align: center;
+		white-space: nowrap;
+		display: inline-block;
+		overflow:none;
+		border: 1px solid $border-color;
+		border-right: none;
+		svg{
+			vertical-align:-6px;
+			margin-right:5px;
+			fill:#c6cbd1;
+		}
+	}
+	.accessible{
+		color: #586069;
+		svg{
+			fill:#586069;
+		}
+		&:hover{
+			background: white;
+			cursor: pointer;
+		}
+	}
+	.completed{
+		background: #fafbfc;
+		svg{
+			fill: $hidden_green;
+		}
+	}
+	.active{
+		background: white;
+	}
+	&--btn:last-child{
+		border-right: 1px solid $border-color;
+	}
+}
+
+.activebox__block{
+	height: 300px;
+	text-align: center;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+	border: 1px solid $border-color;
+	padding: 25px;
+	margin-top: 10px;
+	position: relative;
+	.activeBox__block--box{
+		// y transform 50% webkit
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-top: -6%;
+		margin-left: -37%;
+		width: 75%;
+	  height: 200px;
+
+	}
+	&--persisted{
+		color: $hidden_green;
+		font-size: 45px;
+		font-weight: 700;
+	}
+	&--prompt{
+		font-size: 22px;
+		margin-bottom: 17px;
+	}
+	&--singleform{
+		.input_and_submit{
+			display:inline-block;
+			background: white;
+		  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.075);
+			font-size: 27px;
+	    color: #82CA9C;
+			font-weight: 400;
+			border: 1px solid $border-color;
+			svg{
+				fill: $hidden_green;
+				vertical-align:-8px;
+				&:hover{
+					fill: darken($hidden_green, 10%);
+					cursor: pointer;
+				}
+			}
+			input[type="submit"]{
+				display:none;
+			}
+		}
+	}
+	input[type="number"], input[type="text"]{
+		border: none;
+		text-align: center;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+		padding: 12px 6px;
+		font-size: 27px;
+		color: #82CA9C;
+		border-right: 1px solid $border-color;
+		background: white;
+		margin-right:13px;
+		width: 70%;
+		&:focus{
+			outline: none;
+		}
+	}
+
+	input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.debt__container__block{
+		&--form, &--debts{
+			display: inline-block;
+			float:left;
+		}
+		&--debts{
+			width: 60%;
+			height: 266px;
+			overflow: auto;
+		}
+		&--form{
+			width: 40%;
+			text-align: left;
+			input[type="text"], input[type="number"]{
+				border: 1px solid $border-color;
+				margin: 0px;
+				margin-bottom: 18px;
+				text-align: left;
+				font-size: 17px;
+				width: 80%;
+			}
+			input[type="submit"]{
+				display: none;
+			}
+			label{
+				float:right;
+				margin-right: 16%;
+				svg{
+					border: 1px solid $border-color;
+					fill: $hidden_green;
+					padding: 3px;
+					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+				}
+				&:hover{
+					cursor: pointer;
+					svg{
+						fill: darken($hidden_green, 10%);
+					}
+				}
+			}
+			.percentage__translator{
+				border: 1px solid $border-color;
+				border-left: none;
+				padding: 12.5px;
+			}
+		}
+		.no__debts{
+			font-size: 21px;
+		}
+		.debt__box{
+			border: 1px solid $border-color;
+			margin-bottom: 10px;
+			position: relative;
+			font-size:14px;
+			min-height: 55px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+			&--top, &--bottom{
+				position: absolute;
+				width: 100%;
+			}
+			&--top{
+				top: 7px;
+			}
+			&--bottom{
+				bottom: 7px;
+			}
+			&--left{
+				float:left;
+				margin-left: 10px;
+			}
+			&--right{
+				float:right;
+				margin-right: 10px;
+			}
+			.delete__cta{
+				color: darkred;
+				font-size: 10px;
+				margin-left: 5px;
+				display:none;
+				&:hover{
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+			&:hover{
+				.delete__cta{
+					display:unset;
+				}
+			}
+		}
+	}
+}

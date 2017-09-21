@@ -1,0 +1,30 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	color: #586069;
+}
+a{
+	color: #82CA9C;
+	&:visited, &:hover{
+		color: darken(#82CA9C, 20%)
+	}
+}
+::-webkit-input-placeholder {
+	color:lighten(#c6cbd1, 10%);
+}
+
+.cf:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.cf:before, .cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
