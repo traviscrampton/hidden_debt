@@ -1,0 +1,26 @@
+<center>
+	<div class="login__block--title">
+		<%= image_tag('hidden_green_icon', size:'62x91') %><br><br>
+		Log in
+	</div>
+	<div class="signup__block--container login__block">
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		  <div class="signup__block--input">
+		    <%= f.label :email %><br />
+		    <%= f.email_field :email, autofocus: true %>
+		  </div>
+
+		  <div class="signup__block--input">
+		    <%= f.label :password %> <%= link_to "Forgot your password?", new_password_path(resource_name), class:'signup__block--input--forgot' %><br />
+		    <%= f.password_field :password, autocomplete: "off" %>
+		  </div>
+
+		  <div class="signup__block--input">
+		    <%= f.submit "Log in" %>
+		  </div>
+			<div class="signup__block--login_cta">
+				Don't have an account? <%= link_to "Sign up", root_path %>
+			</div>
+		<% end %>
+	</div>
+</center>

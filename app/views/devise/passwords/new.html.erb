@@ -1,0 +1,20 @@
+<center>
+	<div class="login__block--title">
+		<%= image_tag('hidden_green_icon', size:'62x91') %><br><br>
+		Forgot your password?
+	</div>
+	<div class="signup__block--container login__block reset">
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div class="signup__block--input">
+		    <%= f.label :email %><br />
+		    <%= f.email_field :email, autofocus: true %>
+		  </div>
+
+		  <div class="signup__block--input">
+		    <%= f.submit "Reset Password" %>
+		  </div>
+		<% end %>
+	</div>
+</center>

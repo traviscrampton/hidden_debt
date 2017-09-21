@@ -1,0 +1,18 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<%= devise_error_messages! %>
+	<div class="signup__block--input">
+		<%= f.label :email %><br />
+		<%= f.email_field :email, autofocus: true %>
+	</div>
+	<div class="signup__block--input">
+		<%= f.label :password %><br />
+		<%= f.password_field :password, autocomplete: "off" %>
+	</div>
+
+	<div class="signup__block--input">
+		<%= f.submit "Sign up" %>
+	</div>
+	<div class="signup__block--login_cta">
+		Already have an account? <%= link_to "Log in", new_session_path(resource_name) %>
+	</div>
+<% end %>
