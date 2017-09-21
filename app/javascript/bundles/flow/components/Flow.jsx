@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../components/layouts/Header';
+import NavButton from '../components/layouts/NavButton';
+import ActiveBox from '../components/layouts/Active_box';
 
 export default class Flow extends React.Component{
 
@@ -79,12 +81,44 @@ export default class Flow extends React.Component{
 		this.setState(this.state)
 	}
 
+	buttonStyles(button){
+		let className = "navbutton__block--btn"
+		if(button.completed){
+			className += " completed accessible"
+		} else if(button.accessible){
+			className += " accessible"
+		}
+		if(button.active){className += " active"}
+
+		return className
+	}
+
 	render(){
 		return(
 			<div id="flow">
 				<Header
 					bigText="Let's get out of debt"
 					subText="But first we need some basic finances" />
+					<div className="navbutton__block">
+						{this.state.navButtons.map((button, index) => {
+							return <NavButton
+								key={index}
+								name={button.name}
+								completed={button.completed}
+								accessible={button.accessible}
+								active={this.state.activeFinance == button}
+								prompt={button.prompt}
+								buttonStyles = {this.buttonStyles(button)}
+								buttonClick={() => this.handleButtonClick(index)}/>
+						})}
+					</div>
+					<ActiveBox
+						completed={this.state.activeFinance.completed}
+						prompt={this.state.activeFinance.prompt}
+						record={this.state.activeFinance.records}
+						name={this.state.activeFinance.name}
+						persistFinance={(data) => this.persistFinance(data)}
+						deleteDebt={this.deleteDebt} />
 			</div>
 		)
 			// 	<div className="calculation__button">
@@ -94,25 +128,6 @@ export default class Flow extends React.Component{
 			// 			</form> : ""
 			// 		}
 			// 	</div>
-			// 	<div className="navbutton__block">
-			// 		{this.state.navButtons.map((button, index) => {
-			// 			return <NavButton
-			// 				key={index}
-			// 				name={button.name}
-			// 				completed={button.completed}
-			// 				accessible={button.accessible}
-			// 				active={this.state.activeFinance == button}
-			// 				prompt={button.prompt}
-			// 				buttonClick={() => this.handleButtonClick(index)}/>
-			// 		})}
-			// 	</div>
-			// 	<ActiveBox
-			// 		completed={this.state.activeFinance.completed}
-			// 		prompt={this.state.activeFinance.prompt}
-			// 		record={this.state.activeFinance.records}
-			// 		name={this.state.activeFinance.name}
-			// 		persistFinance={(data) => this.persistFinance(data)}
-			// 		deleteDebt={this.deleteDebt} />
 	}
 }
 
