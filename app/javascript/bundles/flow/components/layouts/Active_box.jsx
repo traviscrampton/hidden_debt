@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DebtContainer from '../debts/DebtContainer';
+import SingleFinanceForm from '../forms/Single_finance_form';
 
 const ActiveBox = props => {
 	if(props.name == "Debts"){
@@ -22,7 +23,7 @@ const ActiveBox = props => {
 				<div className="activebox__block--prompt">
 					{props.prompt}
 				</div>
-				single finance form
+				<SingleFinanceForm persistFinance={props.persistFinance} />
 			</div>
 		)
 	}

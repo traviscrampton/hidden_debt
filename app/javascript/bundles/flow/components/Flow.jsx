@@ -112,13 +112,15 @@ export default class Flow extends React.Component{
 								buttonClick={() => this.handleButtonClick(index)}/>
 						})}
 					</div>
-					<ActiveBox
-						completed={this.state.activeFinance.completed}
-						prompt={this.state.activeFinance.prompt}
-						record={this.state.activeFinance.records}
-						name={this.state.activeFinance.name}
-						persistFinance={(data) => this.persistFinance(data)}
-						deleteDebt={this.deleteDebt} />
+					<div className="activebox__block">
+						<ActiveBox
+							completed={this.state.activeFinance.completed}
+							prompt={this.state.activeFinance.prompt}
+							record={this.state.activeFinance.records}
+							name={this.state.activeFinance.name}
+							persistFinance={(data) => this.persistFinance(data)}
+							deleteDebt={this.deleteDebt} />
+					</div>
 			</div>
 		)
 			// 	<div className="calculation__button">
