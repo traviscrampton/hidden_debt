@@ -12,7 +12,6 @@ NavButton.propTypes = {
 	name: PropTypes.string.isRequired,
 	completed: PropTypes.bool.isRequired,
 	accessible: PropTypes.bool.isRequired,
-	active: PropTypes.bool.isRequired,
 	buttonClick: PropTypes.func.isRequired,
 	prompt: PropTypes.string.isRequired,
 	buttonStyles: PropTypes.string.isRequired

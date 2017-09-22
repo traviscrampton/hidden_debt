@@ -5,7 +5,6 @@ class IncomesController < ApplicationController
 	def create
 		income = current_user.build_income(income_params)
 		income.save!
-		binding.pry
 		render json: income.currency_attrs
 	end
 

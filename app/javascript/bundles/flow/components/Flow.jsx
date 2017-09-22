@@ -26,7 +26,12 @@ export default class Flow extends React.Component{
 	}
 
 	handleButtonClick(index){
-		this.state.activeFinance = this.state.navButtons[index]
+		let activeBtn = this.state.navButtons[index]
+		for(let btn of this.state.navButtons){
+			btn.active = false
+		}
+		activeBtn.active = true;
+		this.state.activeFinance = activeBtn
 		this.setState(this.state)
 	}
 
