@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// still consider not being able to send up anything until all the fields are filled out --> After that we focus on how to make a sane design.
+
 export default class DebtForm extends React.Component{
 
 	constructor(props, context){
