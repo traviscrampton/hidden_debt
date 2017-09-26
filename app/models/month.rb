@@ -11,4 +11,8 @@ class Month < ActiveRecord::Base
 	def has_three_months_spending
 		saving.amount >= spending.three_months
 	end
+
+	def date_string
+		date.strftime("%B") + " " + date.strftime("%Y")
+	end
 end

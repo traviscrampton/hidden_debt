@@ -8,6 +8,7 @@ class MonthAllFinances
 
 	def call
 		attrs = month.attributes
+		attrs['date'] = @month.date_string
 		attrs[:finances] = {
 			income: month.income.attributes,
 			spending: month.spending.attributes,
@@ -21,6 +22,10 @@ class MonthAllFinances
 		attrs = month.saving.attributes
 		attrs[:goals] = month.saving.goals.map(&:attributes)
 		attrs
+	end
+
+	def get_action_items
+
 	end
 
 	def get_debt_json
