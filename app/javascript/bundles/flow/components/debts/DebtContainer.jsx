@@ -1,11 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import DebtForm from '../forms/Debt_form';
 
 const DebtContainer = props =>(
 	<div className="debt__container__block cf">
 		<DebtForm persistFinance={props.persistFinance}/>
 		<div className="debt__container__block--debts">
-				<Debts records={props.records}/>
+			{props.records.map((debt, index) => {
+				return <Debt
+					key={index}
+					name={debt.name}
+					amount={debt.amount}
+					interest_rate={debt.interest_rate}
+					minimum_payment={debt.minimum_payment}
+					deleteDebt={function(){this.handleDebtClick(props, index)}} />
+			})}
 		</div>
 	</div>
 )
