@@ -20,9 +20,9 @@ export default class SingleFinanceForm extends React.Component{
 		e.preventDefault();
 		var data = {"amount":this.state.amount}
 		if(data['amount']){
-			this.props.persistFinance(data)
 			this.state.amount = ""
 			this.setState(this.state)
+			this.props.persistFinance(data)
 		}
 	}
 

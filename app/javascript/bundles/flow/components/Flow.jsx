@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '../components/layouts/Header';
 import NavButton from '../components/layouts/NavButton';
 import ActiveBox from '../components/layouts/Active_box';
+import CalculationButton from '../components/forms/Calculation_button';
 
 
 export default class Flow extends React.Component{
@@ -43,7 +44,7 @@ export default class Flow extends React.Component{
 			data
 		})
 		.then((response) => this.handleSuccess(response.data))
-		.catch((response) => console.log('Oops there has been a booboo') )
+		.catch((response) => console.log(response) )
 	}
 
 	handleSuccess(finance){
@@ -56,8 +57,7 @@ export default class Flow extends React.Component{
 			newActive.accessible = true
 			this.state.activeFinance = newActive
 		}
-		var calculation = this.readyForCalculation(this.state.navButtons)
-		this.state.readyForCalculation = calculation
+		this.setCalculationState();
 		this.setState(this.state)
 	}
 
@@ -73,13 +73,17 @@ export default class Flow extends React.Component{
 
 	handleDebtRemoval(index){
 		let activeFinance = this.state.activeFinance
-		let calculation = this.readyForCalculation(this.state.navButtons)
 		activeFinance.records.splice(index, 1);
 		if(activeFinance.records.length == 0){
 			activeFinance.completed = false
 		}
-		this.state.readyForCalculation = calculation
+		this.setCalculationState();
 		this.setState(this.state)
+	}
+
+	setCalculationState(){
+		let calculation = this.readyForCalculation(this.state.navButtons)
+		this.state.calculation = calculation
 	}
 
 	buttonStyles(button){
@@ -94,9 +98,16 @@ export default class Flow extends React.Component{
 		return className
 	}
 
+	renderCalculationButton(){
+		if(this.state.calculation){
+			return <CalculationButton />
+		}
+	}
+
 	render(){
 		return(
 			<div id="flow">
+				{ this.renderCalculationButton() }
 				<Header
 					bigText="Let's get out of debt"
 					subText="But first we need some basic finances" />
@@ -124,13 +135,6 @@ export default class Flow extends React.Component{
 					</div>
 			</div>
 		)
-			// 	<div className="calculation__button">
-			// 		{this.state.readyForCalculation ?
-			// 			<form action="/months" method="POST">
-			// 				<button>Calculate Debt Plan</button>
-			// 			</form> : ""
-			// 		}
-			// 	</div>
 	}
 }
 
