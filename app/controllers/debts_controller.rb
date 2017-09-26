@@ -17,12 +17,12 @@ class DebtsController < ApplicationController
 	def destroy
 		debt = Debt.find(params[:id])
 		debt.destroy
-		respond_with debt
+		render json: debt
 	end
 
 	private
 
 	def debt_params
-		params.permit(:amount, :minimum_payment, :interest_rate, :name)
+		params.require(:data).permit(:amount, :minimum_payment, :interest_rate, :name)
 	end
 end

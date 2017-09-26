@@ -26,11 +26,11 @@ const Debt = props =>(
 )
 
 Debt.propTypes = {
-	name: React.PropTypes.string.isRequired,
-	amount: React.PropTypes.number.isRequired,
-	interest_rate: React.PropTypes.number.isRequired,
-	minimum_payment: React.PropTypes.number.isRequired,
-	deleteDebt: React.PropTypes.func.isRequired
+	name: PropTypes.string.isRequired,
+	amount: PropTypes.string.isRequired,
+	interest_rate: PropTypes.string.isRequired,
+	minimum_payment: PropTypes.string.isRequired,
+	deleteDebt: PropTypes.func.isRequired
 }
 
 export default Debt;

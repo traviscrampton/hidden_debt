@@ -16,7 +16,6 @@ export default class DebtForm extends React.Component{
 	onInputChange(e){
 		let key = e.target.name
 		this.state[key] = e.target.value
-		debugger;
 		this.setState(this.state)
 	}
 
@@ -27,24 +26,29 @@ export default class DebtForm extends React.Component{
 	}
 
 	clearForm(){
-		this.state = this.getInitialState()
+		this.state = {
+			name: '',
+			amount: '',
+			interest_rate: '',
+			minimum_payment: ''
+		}
 		this.setState(this.state)
 	}
 
 	render(){
 		return(
-			<form onSubmit={this.onSubmit} className="debt__container__block--form">
+			<form onSubmit={this.onSubmit.bind(this)} className="debt__container__block--form">
 				<div>
-					<input autoFocus='true' type="text" name="name" onChange={this.onInputChange} value={this.state.name} placeholder="Name of Debt"/>
+					<input autoFocus='true' type="text" name="name" onChange={this.onInputChange.bind(this)} value={this.state.name} placeholder="Name of Debt"/>
 				</div>
 				<div>
-					<input type="number" name="amount" onChange={this.onInputChange} value={this.state.amount} placeholder="Amount e.g. 15000.00" />
+					<input type="number" name="amount" onChange={this.onInputChange.bind(this)} value={this.state.amount} placeholder="Amount e.g. 15000.00" />
 				</div>
 				<div>
-					<input type="number" name="interest_rate" onChange={this.onInputChange} value={this.state.interest_rate} placeholder="interest rate e.g. 0.09" />
+					<input type="number" name="interest_rate" onChange={this.onInputChange.bind(this)} value={this.state.interest_rate} placeholder="interest rate e.g. 0.09" />
 				</div>
 				<div>
-					<input type="number" name="minimum_payment" onChange={this.onInputChange} value={this.state.minimum_payment} placeholder="Minimum Monthly Payment" />
+					<input type="number" name="minimum_payment" onChange={this.onInputChange.bind(this)} value={this.state.minimum_payment} placeholder="Minimum Monthly Payment" />
 				</div>
 				<label>
 					<svg height="36" viewBox="0 0 24 24" width="36" xmlns="http://www.w3.org/2000/svg">

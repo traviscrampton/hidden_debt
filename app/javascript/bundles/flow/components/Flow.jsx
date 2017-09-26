@@ -62,16 +62,13 @@ export default class Flow extends React.Component{
 	}
 
 	deleteDebt(index){
-		var debt = this.state.activeFinance.records[index]
-		var url = this.state.activeFinance.url + `/${debt.id}`
-		$.ajax({
-			url: url,
-			type: "DELETE",
-			context: this,
-			data: debt,
-			success: response => this.handleDebtRemoval(index),
-			error: response => console.log("That did not work")
+		let debt = this.state.activeFinance.records[index]
+		let url = this.state.activeFinance.url + `/${debt.id}`
+		axios.delete(url, {
+			debt
 		})
+		.then((response) => this.handleDebtRemoval(index))
+		.catch((response) => console.log('Oops there has been a booboo') )
 	}
 
 	handleDebtRemoval(index){
@@ -123,7 +120,7 @@ export default class Flow extends React.Component{
 							record={this.state.activeFinance.records}
 							name={this.state.activeFinance.name}
 							persistFinance={(data) => this.persistFinance(data)}
-							deleteDebt={this.deleteDebt} />
+							deleteDebt={(index) => this.deleteDebt(index)} />
 					</div>
 			</div>
 		)

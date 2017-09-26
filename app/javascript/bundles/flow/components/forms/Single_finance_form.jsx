@@ -19,9 +19,11 @@ export default class SingleFinanceForm extends React.Component{
 	onSubmit(e){
 		e.preventDefault();
 		var data = {"amount":this.state.amount}
-		this.state.amount = ""
-		this.setState(this.state)
-		this.props.persistFinance(data)
+		if(data['amount']){
+			this.props.persistFinance(data)
+			this.state.amount = ""
+			this.setState(this.state)
+		}
 	}
 
 	render(){
