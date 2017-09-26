@@ -28,10 +28,6 @@ export default class Flow extends React.Component{
 	handleButtonClick(index){
 		let targetBtn = this.state.navButtons[index]
 		if(targetBtn.accessible){
-			for(let btn of this.state.navButtons){
-				btn.active = false
-			}
-			targetBtn.active = true;
 			this.state.activeFinance = targetBtn
 			this.setState(this.state)
 		}
@@ -47,12 +43,6 @@ export default class Flow extends React.Component{
 		})
 		.then((response) => this.handleSuccess(response.data))
 		.catch((response) => console.log('Oops there has been a booboo') )
-		// axios({
-		// 	url: this.state.activeFinance.url,
-		// 	type: 'POST',
-		// 	data: data
-		// })
-		// .then((finance) => this.handleSuccess(finance))
 	}
 
 	handleSuccess(finance){

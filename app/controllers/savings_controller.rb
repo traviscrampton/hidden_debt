@@ -29,6 +29,6 @@ class SavingsController < ApplicationController
 	end
 
 	def saving_params
-		params.permit(:amount)
+		params.require(:data).permit(:amount)
 	end
 end
