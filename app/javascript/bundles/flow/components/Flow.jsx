@@ -26,13 +26,15 @@ export default class Flow extends React.Component{
 	}
 
 	handleButtonClick(index){
-		let activeBtn = this.state.navButtons[index]
-		for(let btn of this.state.navButtons){
-			btn.active = false
+		let targetBtn = this.state.navButtons[index]
+		if(targetBtn.accessible){
+			for(let btn of this.state.navButtons){
+				btn.active = false
+			}
+			targetBtn.active = true;
+			this.state.activeFinance = targetBtn
+			this.setState(this.state)
 		}
-		activeBtn.active = true;
-		this.state.activeFinance = activeBtn
-		this.setState(this.state)
 	}
 
 	setActiveFinance(){
@@ -43,7 +45,7 @@ export default class Flow extends React.Component{
 		axios.post(this.state.activeFinance.url, {
 			data
 		})
-		.then((finance) => this.handleSuccess(finance))
+		.then((response) => this.handleSuccess(response.data))
 		.catch((response) => console.log('Oops there has been a booboo') )
 		// axios({
 		// 	url: this.state.activeFinance.url,
@@ -59,8 +61,9 @@ export default class Flow extends React.Component{
 		activeFinance.records = finance
 		var index = this.state.navButtons.indexOf(activeFinance)
 		if(index < 3){
-			this.state.navButtons[index + 1].accessible = true
-			this.state.activeFinance = this.state.navButtons[index + 1]
+			let newActive = this.state.navButtons[index + 1];
+			newActive.accessible = true
+			this.state.activeFinance = newActive
 		}
 		var calculation = this.readyForCalculation(this.state.navButtons)
 		this.state.readyForCalculation = calculation
@@ -98,7 +101,7 @@ export default class Flow extends React.Component{
 		} else if(button.accessible){
 			className += " accessible"
 		}
-		if(button.active){className += " active"}
+		if(this.state.activeFinance == button){className += " active"}
 
 		return className
 	}
