@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921183833) do
+ActiveRecord::Schema.define(version: 20170926230409) do
 
   create_table "debts", force: :cascade do |t|
     t.string "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170921183833) do
   create_table "goals", force: :cascade do |t|
     t.integer "goalable_id"
     t.string "goalable_type"
-    t.float "amount"
+    t.decimal "amount"
   end
 
   create_table "incomes", force: :cascade do |t|
