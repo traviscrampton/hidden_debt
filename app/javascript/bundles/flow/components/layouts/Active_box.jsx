@@ -31,10 +31,10 @@ const ActiveBox = props => {
 
 
 ActiveBox.propTypes = {
-	completed: PropTypes.bool.isRequired,
-	prompt: PropTypes.string.isRequired,
-	persistFinance: PropTypes.func.isRequired,
-	deleteDebt: PropTypes.func.isRequired
+	completed: PropTypes.bool,
+	prompt: PropTypes.string,
+	persistFinance: PropTypes.func,
+	deleteDebt: PropTypes.func
 }
 
 export default ActiveBox;

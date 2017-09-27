@@ -49,8 +49,11 @@ class Setup::Flow
 
 	def generate
 		find_completed_and_accessible
-		find_active_btn
-		return {navButtons: NAV_BUTTONS}
+		return {
+			navButtons: NAV_BUTTONS,
+			activeFinance: find_active_btn,
+			calculation: ready_for_calculation?
+		}
 	end
 
 	def find_completed_and_accessible
@@ -66,8 +69,6 @@ class Setup::Flow
 				finances.map { |debt| debt.currency_attrs }
 			end
 		end
-
-		find_active_btn
 	end
 
 	def find_active_btn
@@ -75,5 +76,12 @@ class Setup::Flow
 			btn[:accessible] == true
 		}.last
 		active[:active] = true
+		binding.pry
+		return active
+	end
+
+	def ready_for_calculation?
+		not_completed = NAV_BUTTONS.select{ |btn| btn[:completed] == false}.length
+		not_completed == 0
 	end
 end

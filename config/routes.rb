@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	  get 'hello_world', to: 'hello_world#index'
 		root to:'home#index'
 		get '/flow' => 'home#flow'
+		get '/flows' => 'flows#index';
 
 		resources :months
 		resources :incomes

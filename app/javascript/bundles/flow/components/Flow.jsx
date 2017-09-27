@@ -13,10 +13,15 @@ export default class Flow extends React.Component{
 		super(props, context);
 
 		this.state = {
-			navButtons: this.props.navButtons,
-			activeFinance: this.setActiveFinance(),
-			calculation: this.readyForCalculation(this.props.navButtons)
+			navButtons: [],
+			activeFinance: {},
+			calculation: false
 		}
+	}
+
+	componentDidMount(){
+		axios.get('/flows')
+		.then((response) => this.setState(response.data))
 	}
 
 	readyForCalculation(categories){
@@ -93,7 +98,7 @@ export default class Flow extends React.Component{
 		} else if(button.accessible){
 			className += " accessible"
 		}
-		if(this.state.activeFinance == button){className += " active"}
+		if(this.state.activeFinance.name == button.name){className += " active"}
 
 		return className
 	}

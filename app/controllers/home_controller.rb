@@ -5,8 +5,7 @@ class HomeController < ApplicationController
 	end
 
 	def flow
-		flow = Setup::Flow.new(current_user).generate
-		@flow = flow.to_json
+		
 	end
 
 	private
