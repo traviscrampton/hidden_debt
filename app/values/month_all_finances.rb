@@ -15,23 +15,22 @@ class MonthAllFinances
 			saving: get_saving_json,
 			debts: get_debt_json
 		}
+		binding.pry
 		attrs
 	end
 
 	def get_saving_json
 		attrs = month.saving.attributes
-		attrs[:goals] = month.saving.goals.map(&:attributes)
+		attrs[:amount] = month.saving.to_currency
+		attrs[:goals] = month.saving.goals.sum('amount')
 		attrs
-	end
-
-	def get_action_items
-
 	end
 
 	def get_debt_json
 		month.debts.map do |debt|
 			attrs = debt.attributes
-			attrs[:goals] = debt.goals.map(&:attributes)
+			attrs[:amount] = debt.to_currency
+			attrs[:goals] = debt.goals.sum('amount')
 			attrs
 		end
 	end

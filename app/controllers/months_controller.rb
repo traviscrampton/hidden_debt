@@ -7,6 +7,6 @@ class MonthsController < ApplicationController
 
 	def show
 		month = Month.find params[:id]
-		@month = MonthAllFinances.new(month: month).call
+		month_data = MonthAllFinances.new(month: month).call
 	end
 end

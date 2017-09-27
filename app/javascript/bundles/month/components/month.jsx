@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../../flow/components/layouts/Header';
+import PlanContainer from '../components/plans/Plan_container';
 
 export default class Month extends React.Component{
 	constructor(props, context){
@@ -10,8 +11,9 @@ export default class Month extends React.Component{
 
 	render(){
 		return(
-			<div>
-				<Header bigText={this.props.date} subText='lets see how it goes'/>
+			<div id="month">
+				<Header bigText={this.props.date} subText="Let's stick to a plan."/>
+				<PlanContainer />
 			</div>
 		)
 	}
