@@ -1,7 +1,43 @@
+@import 'variables';
 #month{
 	padding: 2% 15%;
 	font-weight: 300;
 	.activebox__block{
 		height: 400px;
+	}
+}
+
+.plans__container{
+	width: 65%;
+  height: 390px;
+  overflow: auto;
+}
+.goal__container{
+	position: relative;
+	text-align:left;
+	margin-bottom: 10px;
+	border-bottom: 1px solid $border-color;
+	height: 100px;
+	font-size: 18px;
+	font-weight: 500;
+	padding: 10px 16px;
+	border: 1px solid $border-color;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+	&--top{
+		.goal--amount{
+			float: right;
+		}
+		.goal--logo{
+			vertical-align: -5px;
+			margin-right: 5px;
+			svg{
+				fill: $hidden_green;
+			}
+		}
+	}
+	&--bottom{
+		position: absolute;
+		bottom: 12px;
+		left: 16px;
 	}
 }

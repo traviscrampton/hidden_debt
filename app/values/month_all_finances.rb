@@ -7,14 +7,14 @@ class MonthAllFinances
 	end
 
 	def call
-		all_attrs = {"date": month.date_string}
+		all_attrs = {}
 		all_attrs['goals'] = parse_goals(month.goals)
-		all_attrs.to_json
+		all_attrs
 	end
 
 	def parse_goals(goals)
 		grouped = goals.group_by {|g| g.goalable}
-		goalz = generate_goals_json(grouped)
+		generate_goals_json(grouped)
 	end
 
 
@@ -23,9 +23,10 @@ class MonthAllFinances
 	def generate_goals_json(grouped)
 		return grouped.map do |finance, goals|
 			attrs = {}
-			attrs['finance'] = finance.attributes.slice('id')
-			attrs['finance']['amount'] = currency_amount(finance.amount)
-			attrs['finance']['type'] = finance.class.name
+			attrs['id'] = finance.attributes.slice('id')
+			attrs['amount'] = currency_amount(finance.amount)
+			attrs['name'] = finance.try(:name)
+			attrs['type'] = finance.class.name
 			attrs['goalAmount'] = calculate_string_amounts(goals)
 			attrs
 		end

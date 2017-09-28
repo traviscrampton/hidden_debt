@@ -6,11 +6,14 @@ import PlanContainer from '../components/plans/Plan_container';
 const Month = props => (
 		<div id="month">
 			<Header bigText={props.date} subText={props.smallText}/>
-			<PlanContainer />
+			<div className="activebox__block">
+				<PlanContainer monthId={props.monthId}/>
+			</div>
 		</div>
 )
 
 Month.PropTypes = {
+	monthId: PropTypes.number,
 	date: PropTypes.string,
 	smallText: PropTypes.string
 }

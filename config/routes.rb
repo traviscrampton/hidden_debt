@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 		get '/flow' => 'home#flow'
 		get '/flows' => 'flows#index';
 
-		resources :months
+		resources :months do
+			resource :goals
+		end
 		resources :incomes
 		resources :savings
 		resources :debts

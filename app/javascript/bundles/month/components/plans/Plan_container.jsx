@@ -1,10 +1,47 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import axios from 'axios';
+import Goal from '../goals/Goal';
 
-const PlanContainer = props => (
-	<div className="activebox__block">
+export default class PlanContainer extends React.Component{
 
-	</div>
-)
+	constructor(props, context){
+		super(props, context)
 
-export default PlanContainer
+		this.state = {
+			goals: []
+		}
+	}
+
+	componentDidMount(){
+		axios.get(`/months/${this.props.monthId}/goals`)
+		.then((response) => this.bootUpState(response))
+	}
+
+	bootUpState(response){
+		this.state = response.data
+		this.setState(this.state)
+	}
+
+
+	render(){
+		return(
+			<div className="plans__container">
+				{this.state.goals.map((goal, index) => {
+					return <Goal
+						key={index}
+						id={goal.id}
+						amount={goal.amount}
+						name={goal.name}
+						type={goal.type}
+						goalAmount={goal.goalAmount} />
+				})}
+			</div>
+		)
+	}
+
+}
+
+PlanContainer.PropTypes = {
+	monthId: PropTypes.number
+}
