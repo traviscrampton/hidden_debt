@@ -26,16 +26,21 @@ export default class PlanContainer extends React.Component{
 
 	render(){
 		return(
-			<div className="plans__container">
-				{this.state.goals.map((goal, index) => {
-					return <Goal
-						key={index}
-						id={goal.id}
-						amount={goal.amount}
-						name={goal.name}
-						type={goal.type}
-						goalAmount={goal.goalAmount} />
-				})}
+			<div>
+				<div className="plans__container">
+					{this.state.goals.map((goal, index) => {
+						return <Goal
+							key={index}
+							id={goal.id}
+							amount={goal.amount}
+							name={goal.name}
+							type={goal.type}
+							goalAmount={goal.goalAmount} />
+					})}
+				</div>
+				<div className="projections__container">
+					// interest rate calculations
+				</div>
 			</div>
 		)
 	}

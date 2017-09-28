@@ -12,6 +12,16 @@
   height: 390px;
   overflow: auto;
 }
+.projections__container{
+	width: 30%;
+	border-left: 1px solid $border-color;
+	height: 400px;
+	float: right;
+}
+
+.plans__container, .projections__container{
+	display: inline-block;
+}
 .goal__container{
 	position: relative;
 	text-align:left;
