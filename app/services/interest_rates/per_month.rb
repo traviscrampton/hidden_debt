@@ -8,8 +8,7 @@ class InterestRates::PerMonth
 	end
 
 	def calculate
-		amount*(1 + (interest_rate/12))**(12)
-
-		#things to noodle => Should the thought be how much is being paid in interest and should that be persisted anywhere?
+		# come back to this to properly calculate monthly interest rate
+		amount*(1 + (interest_rate/12))**(1/12)
 	end
 end

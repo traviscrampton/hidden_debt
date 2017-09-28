@@ -7,30 +7,37 @@ class MonthAllFinances
 	end
 
 	def call
-		attrs = month.attributes
-		attrs['date'] = @month.date_string
-		attrs[:finances] = {
-			income: month.income.attributes,
-			spending: month.spending.attributes,
-			saving: get_saving_json,
-			debts: get_debt_json
-		}
-		attrs
+		all_attrs = {"date": month.date_string}
+		all_attrs['goals'] = parse_goals(month.goals)
+		all_attrs.to_json
 	end
 
-	def get_saving_json
-		attrs = month.saving.attributes
-		attrs[:amount] = month.saving.to_currency
-		attrs[:goals] = month.saving.goals.sum('amount')
-		attrs
+	def parse_goals(goals)
+		grouped = goals.group_by {|g| g.goalable}
+		goalz = generate_goals_json(grouped)
 	end
 
-	def get_debt_json
-		month.debts.map do |debt|
-			attrs = debt.attributes
-			attrs[:amount] = debt.to_currency
-			attrs[:goals] = debt.goals.sum('amount')
+
+	private
+
+	def generate_goals_json(grouped)
+		return grouped.map do |finance, goals|
+			attrs = {}
+			attrs['finance'] = finance.attributes.slice('id')
+			attrs['finance']['amount'] = currency_amount(finance.amount)
+			attrs['finance']['type'] = finance.class.name
+			attrs['goalAmount'] = calculate_string_amounts(goals)
 			attrs
 		end
 	end
+
+	def calculate_string_amounts(goals)
+		goals_dec = goals.inject(0) {|sum, goal| sum += goal.amount}
+		currency_amount(goals_dec)
+	end
+
+	def currency_amount(str)
+		 sprintf("%.2f", str.truncate(2))
+	end
+
 end

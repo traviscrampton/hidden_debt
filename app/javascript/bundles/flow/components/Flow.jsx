@@ -118,6 +118,10 @@ export default class Flow extends React.Component{
 	}
 
 	render(){
+		if(this.state.navButtons.length == 0){
+			return null
+		}
+
 		return(
 			<div id="flow">
 				{ this.renderCalculationButton() }
@@ -127,6 +131,7 @@ export default class Flow extends React.Component{
 					<div className="navbutton__block">
 						{this.state.navButtons.map((button, index) => {
 							return <NavButton
+								key={index}
 								name={button.name}
 								completed={button.completed}
 								accessible={button.accessible}

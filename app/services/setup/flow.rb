@@ -50,7 +50,7 @@ class Setup::Flow
 	def generate
 		find_completed_and_accessible
 		find_active_btn
-		
+
 		return {
 			navButtons: NAV_BUTTONS,
 			calculation: ready_for_calculation?

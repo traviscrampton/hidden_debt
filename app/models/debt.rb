@@ -7,8 +7,6 @@ class Debt < ActiveRecord::Base
 	def subtract_min_payment
 		subtracted = minimum_payment <= amount ? minimum_payment : amount
 		self.goals.create(amount: subtracted)
-		new_amount = self.amount - subtracted
-		self.update(amount: new_amount)
 		return subtracted
 	end
 end
