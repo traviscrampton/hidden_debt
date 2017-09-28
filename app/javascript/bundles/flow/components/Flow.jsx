@@ -21,7 +21,14 @@ export default class Flow extends React.Component{
 
 	componentDidMount(){
 		axios.get('/flows')
-		.then((response) => this.setState(response.data))
+		.then((response) => this.handleMounting(response.data))
+	}
+
+	handleMounting(response){
+		this.state.navButtons = response['navButtons'];
+		this.state.activeFinance = this.setActiveFinance(this.state.navButtons);
+		this.state.calculation = response['calculation'];
+		this.setState(this.state)
 	}
 
 	readyForCalculation(categories){
@@ -40,8 +47,8 @@ export default class Flow extends React.Component{
 		}
 	}
 
-	setActiveFinance(){
-		return this.props.navButtons.find((btn) => { return btn.active == true})
+	setActiveFinance(navButtons){
+		return navButtons.find((btn) => { return btn.active == true})
 	}
 
 	persistFinance(data){
@@ -63,6 +70,7 @@ export default class Flow extends React.Component{
 			this.state.activeFinance = newActive
 		}
 		this.setCalculationState();
+		debugger;
 		this.setState(this.state)
 	}
 
@@ -98,7 +106,7 @@ export default class Flow extends React.Component{
 		} else if(button.accessible){
 			className += " accessible"
 		}
-		if(this.state.activeFinance.name == button.name){className += " active"}
+		if(this.state.activeFinance == button){className += " active"}
 
 		return className
 	}
@@ -119,7 +127,6 @@ export default class Flow extends React.Component{
 					<div className="navbutton__block">
 						{this.state.navButtons.map((button, index) => {
 							return <NavButton
-								key={index}
 								name={button.name}
 								completed={button.completed}
 								accessible={button.accessible}

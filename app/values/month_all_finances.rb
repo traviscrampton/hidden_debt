@@ -15,7 +15,6 @@ class MonthAllFinances
 			saving: get_saving_json,
 			debts: get_debt_json
 		}
-		binding.pry
 		attrs
 	end
 

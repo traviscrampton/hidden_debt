@@ -49,9 +49,10 @@ class Setup::Flow
 
 	def generate
 		find_completed_and_accessible
+		find_active_btn
+		
 		return {
 			navButtons: NAV_BUTTONS,
-			activeFinance: find_active_btn,
 			calculation: ready_for_calculation?
 		}
 	end
@@ -76,8 +77,6 @@ class Setup::Flow
 			btn[:accessible] == true
 		}.last
 		active[:active] = true
-		binding.pry
-		return active
 	end
 
 	def ready_for_calculation?
